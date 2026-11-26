@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#18342a">
+  <meta name="description" content="第11组多智能体软件工程工作台">
+  <title>合流 · 多智能体工作台</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到工作区</a>
+  <div class="workspace">
+    <aside class="sidebar" aria-label="工作台导航">
+      <a class="brand" href="#workflow" aria-label="合流工作台首页">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span><strong>合流</strong><small>多智能体工作台</small></span>
+      </a>
+      <div class="navigation">
+        <nav id="navigation" aria-label="主要视图">
+          <button type="button" data-view="workflow" aria-current="page"><span class="nav-icon" aria-hidden="true">↳</span>工作流</button>
+          <button type="button" data-view="discussion"><span class="nav-icon" aria-hidden="true">◎</span>群体讨论</button>
+          <button type="button" data-view="trace"><span class="nav-icon" aria-hidden="true">≋</span>运行记录</button>
+          <button type="button" data-view="delivery"><span class="nav-icon" aria-hidden="true">◇</span>需求与交付</button>
+        </nav>
+        <div class="run-navigation">
+          <div class="side-heading"><span>最近运行</span><button type="button" class="icon-button" id="sidebar-create" aria-label="新建运行" title="新建运行">＋</button></div>
+          <div id="run-list" class="run-list"><p class="sidebar-empty">正在读取运行记录</p></div>
+        </div>
+      </div>
+      <div class="sidebar-footer"><span class="brand-caption">第11组</span><span>软件工程课程工作台</span></div>
+    </aside>
+    <div class="content">
+      <header class="topbar"><div id="breadcrumb">工作流</div><div class="top-actions"><span class="provider" id="provider-label"><i></i>连接中</span><button type="button" class="button button-small" id="top-create"><span aria-hidden="true">＋</span> 新建运行</button></div></header>
+      <main id="main" class="main" tabindex="-1"><section class="loading"><h1>正在打开工作台</h1><p>读取工作流与编号记录。</p></section></main>
+      <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    </div>
+  </div>
+  <dialog id="new-run" class="dialog" aria-labelledby="dialog-title">
+    <form id="new-run-form">
+      <header class="dialog-header"><div><h2 id="dialog-title">新建工作流</h2><p>从一条想法或需求开始。</p></div><button type="button" class="close-button" data-dialog-close aria-label="关闭">×</button></header>
+      <label>运行名称 <span>选填</span><input name="title" maxlength="100" placeholder="便于在历史记录中找到"></label>
+      <label>想法或需求 <span>必填</span><textarea name="idea" rows="5" maxlength="5000" required placeholder="写下目标、使用者以及已经明确的限制。"></textarea></label>
+      <p class="form-error" data-form-error role="alert" hidden></p>
+      <footer class="dialog-actions"><button type="button" class="button button-secondary" data-dialog-close>取消</button><button type="submit" class="button">创建运行 <span aria-hidden="true">↗</span></button></footer>
+    </form>
+  </dialog>
+  <dialog id="action-dialog" class="dialog" aria-labelledby="action-title">
+    <form id="action-form">
+      <header class="dialog-header"><div><h2 id="action-title"></h2><p id="action-context"></p></div><button type="button" class="close-button" data-dialog-close aria-label="关闭">×</button></header>
+      <label id="action-objection-label" hidden>关联异议<select name="objection_id" id="action-objection"></select></label>
+      <label>处理说明 <span id="action-note-hint">选填</span><textarea name="note" id="action-note" rows="4" maxlength="2000" placeholder="记录你的决定或补充信息。"></textarea></label>
+      <p class="form-error" data-form-error role="alert" hidden></p>
+      <footer class="dialog-actions"><button type="button" class="button button-secondary" data-dialog-close>取消</button><button type="submit" class="button" id="action-submit">提交</button></footer>
+    </form>
+  </dialog>
+</body>
+</html>
