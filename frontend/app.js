@@ -344,9 +344,9 @@ function artifactList(artifacts, missing) {
 
 function runDelivery(run) {
   const artifacts = [...array(run.artifacts)].reverse();
-  const isImplementation = item => /^DEV/.test(item.node || '') || /implement|test|review|deliver|code/i.test(item.kind || '');
+  const isImplementation = item => /^DEV-/.test(item.node || '');
   const decisions = array(run.decisions).filter(item => ['N15','DEV-A'].includes(item.node));
-  const demands = artifacts.filter(item => ['N14','N15'].includes(item.node) || /spec|requirement|baseline/i.test(item.kind || ''));
+  const demands = artifacts.filter(item => ['N14','N15'].includes(item.node));
   const others = artifacts.filter(item => !demands.includes(item) && !isImplementation(item));
   return runTitle(run, '需求与交付')
     + `<div class="run-grid"><div class="stack">${panel('需求规格与验收条件', artifactList(demands,'需求 Agent 生成规格后显示原始版本及条目。'))}`
